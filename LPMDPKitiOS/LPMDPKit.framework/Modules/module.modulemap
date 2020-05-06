@@ -1,0 +1,6 @@
+framework module LPMDPKit {
+  umbrella header "LPMDPKit.h"
+
+  export *
+  module * { export * }
+}
