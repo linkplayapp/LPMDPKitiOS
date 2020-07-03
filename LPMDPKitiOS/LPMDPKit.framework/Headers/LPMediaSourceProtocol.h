@@ -44,6 +44,20 @@ typedef enum{
 ///Login
 - (void)LPLoginBoxWithSource:(NSString *)source username:(NSString *)username password:(NSString *)password block:(void(^)(int ret,NSString* Result))block;
 
+/**
+ Next to play info.
+ 
+ block:
+ @{@"queueName":@"",
+   @"source":@"",
+   @"searchUrl":@""
+ }
+ */
+- (void)LPGetNextToPlayInfoWithDeviceId:(NSString *)deviceId block:(void(^)(int ret, NSDictionary *dictionary))block;
+
+
+
+
 
 
 @end

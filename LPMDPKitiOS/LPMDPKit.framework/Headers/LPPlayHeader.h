@@ -17,8 +17,16 @@ typedef NS_ENUM(NSInteger, LPHeaderType)
     LP_HEADER_TYPE_ALBUM,//album
     LP_HEADER_TYPE_ARTIST,//artist
     LP_HEADER_TYPE_STATION,//station
-    LP_HEADER_TYPE_RADIO,//radio
     LP_HEADER_TYPE_SONG, //song
+    LP_HEADER_TYPE_PODCAST,
+};
+
+typedef NS_ENUM(NSInteger, LPHeaderPlayLoopMode)
+{
+    LP_LOOPMODE_PLAYITEM_PLAYLIST = 0,//Use playItm trackUrl can play directly
+    LP_LOOPMODE_PLAYITEM_TRACKURL,//Use playItm trackUrl to get the URL that can be played directly, and then go to play
+    LP_LOOPMODE_PLAYHEADER_SEARCHURL,//Use the playHeader searchUrl to get the Track url and play it
+    LP_LOOPMODE_NOBACK,
 };
 
 /**
@@ -43,13 +51,10 @@ Content source you can request to get the list.
 if this is empty, you must provide LPPlayItem related information.
  */
 @property (nonatomic, strong) NSString *searchUrl;
-/**
-Supported playback modes.
-0: List and single 1: Support single only 2: No playback
- */
-@property (nonatomic, assign) int loopMode;
 
-///Cache type (extended, temporarily not used)
+///Supported playback modes.
+@property (nonatomic, assign) LPHeaderPlayLoopMode loopMode;
+///Cache type
 @property (nonatomic, assign) LPHeaderType headType;
 ///Head creator
 @property (nonatomic, strong) NSString *creator;
@@ -75,6 +80,7 @@ Supported playback modes.
 #define PHONE_IDENTITY [[UIDevice currentDevice] name]
 #define MyFavoriteQueueName @"MyFavouriteQueue"
 #define RECENTLY_QUEUE         @"RecentlyQueue"
+#define CURRENT_QUEUE @"currentQueue"
 /**
  _RemoteLocalQueue，headId is guid
  if parent

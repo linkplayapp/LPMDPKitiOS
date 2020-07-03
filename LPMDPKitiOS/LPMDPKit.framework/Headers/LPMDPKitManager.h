@@ -8,6 +8,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <LPMDPKit/LPMediaSourceProtocol.h>
 
 @class DDXMLDocument;
 @class LPPlayMusicList;
@@ -134,6 +135,32 @@ NS_ASSUME_NONNULL_BEGIN
  }
 */
 - (NSDictionary *)setAlarmStatusWithOpen:(BOOL)open alarmList:(LPAlarmList *)alarmList;
+
+/**
+ Browse Current playlist.
+ @param browse Browse Queue XML
+*/
+- (LPPlayMusicList *)getBrowseListWithString:(NSString *)browse;
+
+/**
+ Add To Next Play.
+ Set the next song to be played.
+ Now only supports adding a single song, and the song contains trackUrl.
+ block
+ {
+  @"queueContext":@"xml"
+ }
+ */
+- (void)addToNextPlayWithDeviceId:(NSString *)deviceId playMusicList:(LPPlayMusicList *)musicList deviceAction:(id<LPMediaSourceProtocol>)action block:(void(^)(NSDictionary *dictionary))block;
+
+/**
+ USB playlist.
+ @param usbString USB Queue XML
+*/
+- (LPPlayMusicList *)getUSBPlaylistWithString:(NSString *)usbString;
+
+
+
 
 
 @end
