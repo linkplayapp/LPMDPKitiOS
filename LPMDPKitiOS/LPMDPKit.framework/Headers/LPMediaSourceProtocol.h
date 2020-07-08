@@ -12,15 +12,15 @@
  Device SDK implementation protocol
  Mainly to provide communication between the source SDK and the device.
  */
-
 NS_ASSUME_NONNULL_BEGIN
 
-typedef enum{
-    LPStringType,
-    LPJsonType,
-    LPXmlType,
-    LPImageType,
-} LPResponseType;
+typedef NS_ENUM(NSInteger, LPMDPKitResponseType)
+{
+    LPMDPKitStringType = 0,
+    LPMDPKitJsonType,
+    LPMDPKitXmlType,
+    LPMDPKitImageType,
+};
 
 @protocol LPMediaSourceProtocol <NSObject>
 
@@ -36,10 +36,10 @@ typedef enum{
 - (void)LPLogOutWithDeviceId:(NSString *)deviceId source:(NSString *)source block:(void(^)(int ret, NSError *error))block;
 
 ///HTTP
-- (NSURLSessionDataTask *)LPCommonHTTPMethod:(NSString *)url responseType:(LPResponseType)type success:(void (^)(NSURLSessionDataTask *operation, id responseObject))success failure:(void (^)(NSURLSessionDataTask *operation, NSError *error))failure timeout:(NSTimeInterval)time;
+- (NSURLSessionDataTask *)LPCommonHTTPMethod:(NSString *)url responseType:(LPMDPKitResponseType)type success:(void (^)(NSURLSessionDataTask *operation, id responseObject))success failure:(void (^)(NSURLSessionDataTask *operation, NSError *error))failure timeout:(NSTimeInterval)time;
 
 ///Source Http
-- (NSURLSessionDataTask *)LPCommonSourceHTTPMethod:(NSString *)url responseType:(LPResponseType)type success:(void (^)(NSURLSessionDataTask *operation, id responseObject))success failure:(void (^)(NSURLSessionDataTask *operation, NSError *error))failure redirect:(void (^)(NSURLSessionTask *operation, NSHTTPURLResponse *responseObject))redirect timeout:(NSTimeInterval)time;
+- (NSURLSessionDataTask *)LPCommonSourceHTTPMethod:(NSString *)url responseType:(LPMDPKitResponseType)type success:(void (^)(NSURLSessionDataTask *operation, id responseObject))success failure:(void (^)(NSURLSessionDataTask *operation, NSError *error))failure redirect:(void (^)(NSURLSessionTask *operation, NSHTTPURLResponse *responseObject))redirect timeout:(NSTimeInterval)time;
 
 ///Login
 - (void)LPLoginBoxWithSource:(NSString *)source username:(NSString *)username password:(NSString *)password block:(void(^)(int ret,NSString* Result))block;
