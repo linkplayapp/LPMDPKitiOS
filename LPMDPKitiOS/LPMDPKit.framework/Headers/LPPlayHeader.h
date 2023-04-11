@@ -19,6 +19,8 @@ typedef NS_ENUM(NSInteger, LPHeaderType)
     LP_HEADER_TYPE_STATION,//station
     LP_HEADER_TYPE_SONG, //song
     LP_HEADER_TYPE_PODCAST,
+    LP_HEADER_TYPE_SHOW,
+    LP_HEADER_TYPE_EPISODE
 };
 
 typedef NS_ENUM(NSInteger, LPHeaderPlayLoopMode)
@@ -80,7 +82,7 @@ if this is empty, you must provide LPPlayItem related information.
 #define PHONE_IDENTITY [[UIDevice currentDevice] name]
 #define MyFavoriteQueueName @"MyFavouriteQueue"
 #define RECENTLY_QUEUE         @"RecentlyQueue"
-#define CURRENT_QUEUE @"currentQueue"
+#define CURRENT_QUEUE @"CurrentQueue"
 /**
  _RemoteLocalQueue，headId is guid
  if parent
@@ -148,11 +150,17 @@ if this is empty, you must provide LPPlayItem related information.
 #define QOBUZ_SOURCE      @"Qobuz"
 #define AUDIBLE_SOURCE    @"Audible"
 #define DEEZER_SOURCE     @"Deezer"
+#define DEEZER2_SOURCE     @"Deezer2"
 #define RADIONET_SOURCE   @"RadioNet"
 #define ALDILIFE_SOURCE   @"AldiLife"
 #define IHOMETONE_SOURCE  @"iHomeTone"
 #define SPOTIFY_SHOW      @"spotify:show" //spotify Podcast
 #define SPOTIFY_EPISODE   @"spotify:episode"
+#define LINKPLAY_RADIO    @"Linkplay Radio"
+#define CALMRADIO_SOURCE  @"CalmRadio"
+#define SOUNDMACHINE_SOURCE @"SoundMachine"
+#define LINKPLAY_SPOTIFY  @"LinkplaySpotify"
+#define SOUNDCLOUD_SOURCE  @"SoundCloud"
 
 #pragma mark ----- Alexa MediaSource
 #define ALEXA_SOURCE_SPOTIFY @"SPOTIFY"

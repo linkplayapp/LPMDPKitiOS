@@ -12,6 +12,13 @@
 @class LPPlayItem;
 @class LPPlayHeader;
 
+typedef NS_ENUM(NSInteger, LPPlayMusicListPlayMode)
+{
+    LPMS_PLAYMODE_SEARCHURL = 0, //Use the LPPlayHeader *header searchUrl
+    LPMS_PLAYMODE_PLAYLIST, // Use the NSArray<LPPlayItem *> *list
+    LPMS_PLAYMODE_MIXEDPLAY //Mied play
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -32,6 +39,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //* Play index / preset index
 @property (nonatomic, assign) int index;
+
+//* Play method
+@property (nonatomic, assign) LPPlayMusicListPlayMode playMode;
 
 //Custom presets ** Special, not processed at the moment **
 @property (nonatomic, strong) NSString *customPresetName;

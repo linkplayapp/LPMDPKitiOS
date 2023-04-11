@@ -15,7 +15,10 @@
 #import <LPMDPKit/LPPlayMusicList.h>
 #import <LPMDPKit/LPAlarmList.h>
 #import <LPMDPKit/LPPlayMusicList.h>
-#import <LPMDPKit/LPMediaSourceProtocol.h>
+#import <LPMDPKit/LPMSLogger.h>
+#import <LPMDPKit/NSString+CompareVersion2.h>
+#import <LPMDPKit/LPMDPStreamServiceProtocol.h>
+
 
 //! Project version number for LPMDPKit.
 FOUNDATION_EXPORT double LPMDPKitVersionNumber;

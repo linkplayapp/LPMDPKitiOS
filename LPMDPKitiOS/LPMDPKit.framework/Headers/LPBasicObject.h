@@ -39,6 +39,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)LPObjectWithKeyValues:(id)keyValues;
 
+/**
+ Get Object
+ @return Deep copy
+ */
+- (instancetype)LPObjectCopy;
+
 
 @end
 

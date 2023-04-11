@@ -8,7 +8,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <LPMDPKit/LPMediaSourceProtocol.h>
+#import "LPMDPStreamServiceProtocol.h"
 
 @class DDXMLDocument;
 @class LPPlayMusicList;
@@ -31,6 +31,22 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)shared;
 
 /**
+ Init SDK.
+ @param action <LPMediaSourceProtocol> protocol implementation class.
+ */
+-(void)initDeviceActionObject:(id)action;
+
+/**
+ Device action object.
+ */
+-(id)getDeviceActionObject;
+
+
+- (void)registerStreamService:(id<LPMDPStreamServiceProtocol>)streamService;
+- (id<LPMDPStreamServiceProtocol>)streamServiceForSource:(NSString *)source;
+
+
+/**
  Audio source playback.
  Used to play audio content and obtain the XML required for device playback.
  The returned data can be directly given to the device SDK.
@@ -45,6 +61,18 @@ NS_ASSUME_NONNULL_BEGIN
  }
  */
 - (NSDictionary *)playMusicSingleSource:(LPPlayMusicList *)musicList;
+
+/**
+ Generate data to append to queue with LPPlayMusicList array.
+ The returned data can be directly given to the device SDK.
+ 
+ @param musicListArray LPPlayMusicList array
+ return Dictionary
+ {
+ @"playData":@[@"xml",@"xml"],
+ }
+ */
+- (NSDictionary *)appendToQueueData:(NSArray<LPPlayMusicList *>*)musicListArray pageLimit:(int)limit currentQueueName:(NSString *)queueName;
 
 /**
  Parsing preset code content.
@@ -146,21 +174,20 @@ NS_ASSUME_NONNULL_BEGIN
  Add To Next Play.
  Set the next song to be played.
  Now only supports adding a single song, and the song contains trackUrl.
- block
+ 
+ @param action id<LPMediaSourceProtocol>
+ Note: Block
  {
   @"queueContext":@"xml"
  }
  */
-- (void)addToNextPlayWithDeviceId:(NSString *)deviceId playMusicList:(LPPlayMusicList *)musicList deviceAction:(id<LPMediaSourceProtocol>)action block:(void(^)(NSDictionary *dictionary))block;
+- (void)addToNextPlayWithDeviceId:(NSString *)deviceId playMusicList:(LPPlayMusicList *)musicList deviceAction:(id)action block:(void(^)(NSDictionary *dictionary))block;
 
 /**
  USB playlist.
  @param usbString USB Queue XML
 */
 - (LPPlayMusicList *)getUSBPlaylistWithString:(NSString *)usbString;
-
-
-
 
 
 @end
